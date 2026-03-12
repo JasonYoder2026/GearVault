@@ -3,15 +3,22 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
+$pdo = new PDO(
+    "pgsql:host=postgres;port=5432;dbname=gearvault",
+    "gearvault_dev",
+    "gearvault_dev"
+);
+
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'GET') {
-    $data = [
-        ['id' => 1, 'name' => 'Item 1'],
-        ['id' => 2, 'name' => 'Item 2'],
-        ['id' => 3, 'name' => 'Item 3'],
-    ];
-    echo json_encode($data);
+    $stmt = $pdo->query("SELECT NOW()");
+    $result = $stmt->fetch();
+
+    echo json_encode([
+        "message" => "API working",
+        "time" => $result[0]
+    ]);
 } else {
     http_response_code(405);
     echo json_encode(['error' => 'Method Not Allowed']);
