@@ -3,11 +3,14 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-$host = getenv("DB_HOST");
-$port = getenv("DB_PORT");
-$db = getenv("POSTGRES_DB");
-$user = getenv("POSTGRES_USER");
-$pass = getenv("POSTGRES_PASSWORD");
+$env = parse_ini_file('../.env');
+
+$host = $env['DB_HOST'];
+$port = $env['DB_PORT'];
+$db = $env['POSTGRES_DB'];
+$user = $env['POSTGRES_USER'];
+$pass = $env["POSTGRES_PASSWORD"];
+
 
 $pdo = new PDO(
     "pgsql:host=$host;port=$port;dbname=$db",
@@ -25,6 +28,7 @@ if ($method === 'GET') {
         "message" => "API working",
         "time" => $result[0]
     ]);
+
 } else {
     http_response_code(405);
     echo json_encode(['error' => 'Method Not Allowed']);
