@@ -3,10 +3,16 @@
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
+$host = getenv("DB_HOST");
+$port = getenv("DB_PORT");
+$db = getenv("POSTGRES_DB");
+$user = getenv("POSTGRES_USER");
+$pass = getenv("POSTGRES_PASSWORD");
+
 $pdo = new PDO(
-    "pgsql:host=postgres;port=5432;dbname=gearvault",
-    "gearvault_dev",
-    "gearvault_dev"
+    "pgsql:host=$host;port=$port;dbname=$db",
+    $user,
+    $pass
 );
 
 $method = $_SERVER['REQUEST_METHOD'];
