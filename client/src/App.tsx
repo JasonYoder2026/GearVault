@@ -1,7 +1,8 @@
 import './App.css'
+import { apiFetch } from './api/client';
 
 async function App() {
-      const res = await fetch('http://localhost:8000/');
+      const res = await apiFetch('/');
       if (res.ok) {
         const data = await res.json();
         console.log(data);

@@ -7,9 +7,10 @@ flowchart TD
 ```
 
 
-## Docker
+## Development
 
-### Create a .env file following the .env.example file
+### Environment
+Create .env files following the .env.example files
 
 ### Dev Environment
 
