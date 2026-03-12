@@ -1,20 +1,15 @@
 import './App.css'
-import { apiFetch } from './api/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
 
-async function App() {
-      const res = await apiFetch('/');
-      if (res.ok) {
-        const data = await res.json();
-        console.log(data);
-      } else {
-        console.error('Failed to fetch data from the server');
-      }
+function App() {
 
   return (
-    <>
-    <h1>GearVault</h1>
-    <p>data</p>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
