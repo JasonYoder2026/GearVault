@@ -1,0 +1,41 @@
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+  padding: 10px 40px 40px;
+  max-width: 1400px;
+  margin: auto;
+
+}
+
+/* individual cards */
+.category-card {
+  background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+  border-radius: 12px;
+  height: 85px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+/* hover effect */
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  background: linear-gradient(135deg, #3389cf, #48a9c7);
+  color: black;
+}
+
+/* title */
+.category-card h3 {
+  margin: 0;
+}

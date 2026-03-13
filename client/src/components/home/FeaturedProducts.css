@@ -1,0 +1,37 @@
+.featured-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.product-row {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 16px;
+  padding: 10px;
+}
+
+/* hide scrollbar */
+.product-row::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.scroll-btn.left {
+  left: 0;
+}
+
+.scroll-btn.right {
+  right: 0;
+}
