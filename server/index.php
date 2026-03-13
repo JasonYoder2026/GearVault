@@ -19,14 +19,14 @@ $pdo = new PDO(
 );
 
 $method = $_SERVER['REQUEST_METHOD'];
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-if ($method === 'GET') {
-    $stmt = $pdo->query("SELECT NOW()");
-    $result = $stmt->fetch();
+if ($method === 'GET' && $path === '/') {
+    $stmt = $pdo->query("SELECT id, name, price, image FROM public.products");
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode([
-        "message" => "API working",
-        "time" => $result[0]
+        "products" => $result
     ]);
 
 } else {
