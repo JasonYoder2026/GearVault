@@ -15,6 +15,11 @@ class Product {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function getFeatured() {
+        $stmt = self::$db->query("SELECT * FROM products WHERE is_featured = true ORDER BY RANDOM() LIMIT 15");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function find($id) {
         $stmt = self::$db->prepare("SELECT * FROM products_view WHERE id = :id");
         $stmt->execute(['id' => $id]);

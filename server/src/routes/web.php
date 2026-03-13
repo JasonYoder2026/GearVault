@@ -6,6 +6,9 @@ switch ("$method $uri") {
     case 'GET /':
         ProductController::index();
         break;
+    case 'GET /featured':
+        ProductController::featured();
+        break;
     case 'GET /products/view':
         ProductController::view($_GET['id'] ?? null);
         break;

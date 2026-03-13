@@ -15,4 +15,8 @@ class ProductService {
     public static function search($q) {
         return Product::searchByNameOrDescription($q);
     }
+
+    public static function getFeatured() {
+        return Product::getFeatured();
+    }
 }

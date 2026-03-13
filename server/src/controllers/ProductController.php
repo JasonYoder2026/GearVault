@@ -10,6 +10,11 @@ class ProductController {
         echo json_encode($products);
     }
 
+    public static function featured() {
+        $featured = ProductService::getFeatured();
+        echo json_encode($featured);
+    }
+
     public static function view($id) {
         if (!$id) {
             http_response_code(400);
