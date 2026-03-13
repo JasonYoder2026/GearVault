@@ -13,7 +13,7 @@ function ProductGrid() {
   useEffect(() => {
     async function loadProducts() {
       const data = await apiFetch("/");
-      setProducts(data.products);
+      setProducts(data);
     }
 
     loadProducts();
