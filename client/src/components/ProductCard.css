@@ -1,8 +1,17 @@
 .add-to-cart-btn {
-    background: linear-gradient(135deg, #3389cf, #48a9c7);
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 8px 12px;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
 }
