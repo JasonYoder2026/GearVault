@@ -1,0 +1,27 @@
+.footer {
+    width: 100%;
+    background-color: #5B96AC;
+    color: #202425;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px 0;
+    height: 75px;
+}
+
+.footer-contact {
+    color: #202425;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.footer-contact:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+.footer-about {
+    color: #202425;
+    text-decoration: none;
+    font-size: 20px;
+}
