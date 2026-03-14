@@ -26,6 +26,12 @@ class Product {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public static function getByCategory($category) {
+        $stmt = self::$db->prepare("SELECT * FROM products_view WHERE category ILIKE :category");
+        $stmt->execute(['category' => "%$category%"]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public static function searchByNameOrDescription($q) {
         $stmt = self::$db->prepare("SELECT * FROM products_view WHERE name ILIKE :q OR description ILIKE :q");
         $stmt->execute(['q' => "%$q%"]);

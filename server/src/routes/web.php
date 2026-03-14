@@ -12,6 +12,9 @@ switch ("$method $uri") {
     case 'GET /products/view':
         ProductController::view($_GET['id'] ?? null);
         break;
+    case 'GET /products':
+        ProductController::products($_GET['name'] ?? '');
+        break;
     case 'GET /products/search':
         ProductController::search($_GET['q'] ?? '');
         break;

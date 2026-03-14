@@ -25,6 +25,16 @@ class ProductController {
         echo json_encode($product);
     }
 
+    public static function products($params) {
+        $category = $params['category'] ?? null;
+        if ($category) {
+            $products = ProductService::getByCategory($category);
+        } else {
+            $products = ProductService::getAll();
+        }
+        echo json_encode($products);
+    }
+
     public static function search($query) {
         $results = ProductService::search($query);
         echo json_encode($results);

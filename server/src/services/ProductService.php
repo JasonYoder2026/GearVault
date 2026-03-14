@@ -19,4 +19,8 @@ class ProductService {
     public static function getFeatured() {
         return Product::getFeatured();
     }
+
+    public static function getByCategory($category) {
+        return Product::getByCategory($category);
+    }
 }
