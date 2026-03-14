@@ -15,7 +15,6 @@ function ProductsBody() {
       try {
         if (category) {
           const data = await apiFetch(`/products?category=${category.toLowerCase()}`);
-          console.log("Fetched products for category:", category, data);
           setProducts(data);
           return;
         }
