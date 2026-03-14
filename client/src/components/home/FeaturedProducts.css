@@ -21,17 +21,28 @@
   position: absolute;
   top: 40%;
   transform: translateY(-50%);
-  background: white;
+  background: transparent;
   border: 1px solid #ddd;
   padding: 10px;
   cursor: pointer;
   z-index: 2;
+  height: 85px;
+  width: 50px;
+}
+
+.scroll-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: #aaa;
 }
 
 .scroll-btn.left {
   left: 0;
+  border: none;
+  color: #000000;
 }
 
 .scroll-btn.right {
   right: 0;
+  border: none;
+  color: #000000;
 }
