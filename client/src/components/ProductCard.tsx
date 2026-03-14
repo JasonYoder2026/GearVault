@@ -1,4 +1,5 @@
 import type { Product } from '../models/Product';
+import './ProductCard.css';
 
 interface ProductCardProps {
   product: Product;
@@ -11,7 +12,7 @@ function ProductCard({ product }: ProductCardProps ) {
       <div className="product-info">
         <h3>{product.name}</h3>
         <p>${product.price}</p>
-        <button>Add to Cart</button>
+        <button className="add-to-cart-btn">Add to Cart</button>
       </div>
     </div>
   );

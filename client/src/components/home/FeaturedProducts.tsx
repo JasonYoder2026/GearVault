@@ -13,8 +13,12 @@ function FeaturedProducts() {
 
   useEffect(() => {
     async function loadProducts() {
-      const data = await apiFetch("/featured");
-      setProducts(data);
+      try {
+        const data = await apiFetch("/featured");
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching featured products:", error);
+      }
     }
 
     loadProducts();
