@@ -14,7 +14,8 @@ function ProductsBody() {
     async function loadProducts() {
       try {
         if (category) {
-          const data = await apiFetch(`/products?category=${category}`);
+          const data = await apiFetch(`/products?category=${category.toLowerCase()}`);
+          console.log("Fetched products for category:", category, data);
           setProducts(data);
           return;
         }
@@ -36,4 +37,4 @@ function ProductsBody() {
   );
 }
 
-export default ProductsBody;
+export default ProductsBody

@@ -8,7 +8,7 @@ export default function CategoryGrid() {
     <div className="category-grid">
       {categories.map((category) => (
         <div key={category} className="category-card">
-          <h3>{category}</h3>
+          <h3><a href={`/products?category=${category}`}>{category}</a></h3>
         </div>
       ))}
     </div>
