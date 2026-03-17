@@ -5,13 +5,13 @@ import Footer from "../components/Footer";
 
 function Products() {
     return (
-        <>
-      <Navbar />
-
-      <ProductsBody />
-
-      <Footer />
-    </>
+      <>
+        <Navbar />
+        <body>
+          <ProductsBody />
+        </body>
+        <Footer />
+      </>
     );
 }
 

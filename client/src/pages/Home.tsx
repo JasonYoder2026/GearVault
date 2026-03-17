@@ -8,11 +8,11 @@ function Home() {
     return (
         <>
       <Navbar />
-
-      <HeroCarousel />
-      <CategoryGrid />
-      <FeaturedProducts />
-
+      <body>
+        <HeroCarousel />
+        <CategoryGrid />
+        <FeaturedProducts />
+      </body>
       <Footer />
     </>
     );

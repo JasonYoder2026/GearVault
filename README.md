@@ -15,7 +15,7 @@ Create .env files following the .env.example files
 ### Dev Environment
 
 - Run ```docker compose -f docker-compose.dev.yml up -d```
-- Run ```php -S localhost:8000``` from server/
+- Run ```php -S localhost:8080``` from server/
 - Run ```npm start``` from client/
 
 ### Production Environment
