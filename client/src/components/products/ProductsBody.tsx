@@ -5,34 +5,63 @@ import { useEffect, useState} from "react";
 import { apiFetch } from "../../api/client";
 import { useSearchParams } from "react-router-dom";
 
-function ProductsBody() {
+type Props = {
+  filters: any;
+}
+
+function ProductsBody({filters}: Props) {
   const [products, setProducts] = useState<Product[]>([]);
   const [searchParams] = useSearchParams();
   const category = searchParams.get("category");
+  const [sort, setSort] = useState("");
 
   useEffect(() => {
     async function loadProducts() {
       try {
-        if (category) {
-          const data = await apiFetch(`/products?category=${category.toLowerCase()}`);
-          setProducts(data);
-          return;
+        let query = "/products?";
+
+        if (filters.category) {
+          query += `category=${filters.category}&`;
         }
-        const data = await apiFetch("/products");
+
+        if (filters.minPrice) {
+          query += `minPrice=${filters.minPrice}&`;
+        }
+
+        if (filters.maxPrice) {
+          query += `maxPrice=${filters.maxPrice}&`;
+        }
+
+        if (sort) {
+          query += `sort=${sort}`;
+        }
+
+        const data = await apiFetch(query);
         setProducts(data);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error(error);
       }
     }
     loadProducts();
-  }, []);
+  }, [filters, sort]);
 
   return (
-    <div className="products-body">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <>
+      <div className="sort-bar">
+        <label>Sort by:</label>
+        <select onChange={(e) => setSort(e.target.value)}>
+          <option value="">None</option>
+          <option value="price_asc">Price: Low → High</option>
+          <option value="price_desc">Price: High → Low</option>
+        </select>
+      </div>
+
+      <div className="products-body">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </>
   );
 }
 

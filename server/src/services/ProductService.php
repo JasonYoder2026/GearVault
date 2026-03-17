@@ -20,7 +20,7 @@ class ProductService {
         return Product::getFeatured();
     }
 
-    public static function getByCategory($category) {
-        return Product::getByCategory($category);
+    public static function getByFilters($category = null, $minPrice = null, $maxPrice = null) {
+        return Product::getByFilters($category, $minPrice, $maxPrice);
     }
 }

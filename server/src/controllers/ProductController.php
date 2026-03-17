@@ -27,11 +27,9 @@ class ProductController {
 
     public static function products($params) {
         $category = $_GET['category'] ?? null;
-        error_log("Category filter: " . ($category ?? "none"));
-        error_log(print_r($_GET, true));
 
         if ($category) {
-            $products = ProductService::getByCategory($category);
+            $products = ProductService::getByFilters($category);
         } else {
             $products = ProductService::getAll();
         }
