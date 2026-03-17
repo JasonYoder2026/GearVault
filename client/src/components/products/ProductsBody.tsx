@@ -3,39 +3,38 @@ import type { Product } from "../../models/Product";
 import './ProductsBody.css';
 import { useEffect, useState} from "react";
 import { apiFetch } from "../../api/client";
-import { useSearchParams } from "react-router-dom";
 
 type Props = {
-  filters: any;
-}
+  filters: {
+    category: string;
+    minPrice: number | "";
+    maxPrice: number | "";
+  };
+};
 
 function ProductsBody({filters}: Props) {
   const [products, setProducts] = useState<Product[]>([]);
-  const [searchParams] = useSearchParams();
-  const category = searchParams.get("category");
   const [sort, setSort] = useState("");
 
   useEffect(() => {
     async function loadProducts() {
       try {
         let query = "/products?";
+        const params = [];
 
         if (filters.category) {
-          query += `category=${filters.category}&`;
+          const formattedCategory = filters.category.replace(/-/g, " ");
+          params.push(`category=${formattedCategory}`);
         }
-
-        if (filters.minPrice) {
-          query += `minPrice=${filters.minPrice}&`;
+        if (filters.minPrice !== "" && filters.minPrice !== null) {
+          params.push(`minPrice=${filters.minPrice}`);
         }
-
-        if (filters.maxPrice) {
-          query += `maxPrice=${filters.maxPrice}&`;
+        if (filters.maxPrice !== "" && filters.maxPrice !== null) {
+          params.push(`maxPrice=${filters.maxPrice}`);
         }
+        if (sort) params.push(`sort=${sort}`);
 
-        if (sort) {
-          query += `sort=${sort}`;
-        }
-
+        query += params.join("&");
         const data = await apiFetch(query);
         setProducts(data);
       } catch (error) {

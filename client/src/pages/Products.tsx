@@ -5,19 +5,29 @@ import Footer from "../components/Footer";
 import { useState } from "react";
 
 function Products() {
-    const [filters, setFilters] = useState({});
+    type FiltersType = {
+      category: string;
+      minPrice: number | "";
+      maxPrice: number | "";
+    };
+
+    const [filters, setFilters] = useState<FiltersType>({
+      category: "",
+      minPrice: "",
+      maxPrice: "",
+    });
     
     return (
       <>
         <Navbar />
-        <body className="products-page">
+        <div className="products-page">
           <aside className='filters'>
             <Filters onFilterChange={setFilters} />
           </aside>
           <div className="products-content">
           <ProductsBody filters={filters}/>
           </div>
-        </body>
+        </div>
         <Footer />
       </>
     );

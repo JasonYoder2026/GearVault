@@ -6,8 +6,8 @@ type Props = {
 
 function Filters({ onFilterChange }: Props) {
   const [category, setCategory] = useState("");
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
+  const [minPrice, setMinPrice] = useState<number | "">("");
+  const [maxPrice, setMaxPrice] = useState<number | "">("");
 
   function applyFilters() {
     onFilterChange({
@@ -36,12 +36,18 @@ function Filters({ onFilterChange }: Props) {
 
       <div>
         <label>Min Price</label>
-        <input type="number" onChange={(e) => setMinPrice(e.target.value)} />
+        <input type="number" onChange={(e) => {
+            const value = e.target.value;
+            setMinPrice(value === "" ? "" : Number(value));
+        }} />
       </div>
 
       <div>
         <label>Max Price</label>
-        <input type="number" onChange={(e) => setMaxPrice(e.target.value)} />
+        <input type="number" onChange={(e) => {
+            const value = e.target.value;
+            setMaxPrice(value === "" ? "" : Number(value));
+        }} />
       </div>
 
       <button onClick={applyFilters}>Apply</button>

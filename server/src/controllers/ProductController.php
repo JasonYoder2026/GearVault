@@ -25,14 +25,19 @@ class ProductController {
         echo json_encode($product);
     }
 
-    public static function products($params) {
-        $category = $_GET['category'] ?? null;
+    public static function products($category, $minPrice, $maxPrice, $sort) {
 
+        // normalize category
         if ($category) {
-            $products = ProductService::getByFilters($category);
-        } else {
-            $products = ProductService::getAll();
+            $category = str_replace('-', ' ', $category);
         }
+
+        // convert prices safely
+        $minPrice = is_numeric($minPrice) ? (float)$minPrice : null;
+        $maxPrice = is_numeric($maxPrice) ? (float)$maxPrice : null;
+
+        $products = Product::getByFilters($category, $minPrice, $maxPrice);
+
         echo json_encode($products);
     }
 
