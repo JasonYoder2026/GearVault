@@ -1,19 +1,18 @@
-import { useState } from "react";
-
 type Props = {
+  filters: {
+    category: string;
+    minPrice: number | "";
+    maxPrice: number | "";
+  };
   onFilterChange: (filters: any) => void;
 };
 
-function Filters({ onFilterChange }: Props) {
-  const [category, setCategory] = useState("");
-  const [minPrice, setMinPrice] = useState<number | "">("");
-  const [maxPrice, setMaxPrice] = useState<number | "">("");
+function Filters({ filters, onFilterChange }: Props) {
 
-  function applyFilters() {
+  function updateField(field: string, value: any) {
     onFilterChange({
-      category,
-      minPrice,
-      maxPrice,
+      ...filters,
+      [field]: value,
     });
   }
 
@@ -23,7 +22,10 @@ function Filters({ onFilterChange }: Props) {
 
       <div>
         <label>Category</label>
-        <select onChange={(e) => setCategory(e.target.value)}>
+        <select
+          value={filters.category}
+          onChange={(e) => updateField("category", e.target.value)}
+        >
           <option value="">All</option>
           <option value="pedals">Pedals</option>
           <option value="electric-guitars">Electric Guitars</option>
@@ -36,21 +38,27 @@ function Filters({ onFilterChange }: Props) {
 
       <div>
         <label>Min Price</label>
-        <input type="number" onChange={(e) => {
+        <input
+          type="number"
+          value={filters.minPrice}
+          onChange={(e) => {
             const value = e.target.value;
-            setMinPrice(value === "" ? "" : Number(value));
-        }} />
+            updateField("minPrice", value === "" ? "" : Number(value));
+          }}
+        />
       </div>
 
       <div>
         <label>Max Price</label>
-        <input type="number" onChange={(e) => {
+        <input
+          type="number"
+          value={filters.maxPrice}
+          onChange={(e) => {
             const value = e.target.value;
-            setMaxPrice(value === "" ? "" : Number(value));
-        }} />
+            updateField("maxPrice", value === "" ? "" : Number(value));
+          }}
+        />
       </div>
-
-      <button onClick={applyFilters}>Apply</button>
     </div>
   );
 }
